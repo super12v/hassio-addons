@@ -1,0 +1,32 @@
+name: "Redis Sentinel"
+description: "Redis Sentinel tiebreaker vote for automatic Redis HA failover. Monitors primary/replica and casts the deciding quorum vote."
+version: "1.0.0"
+slug: "redis_sentinel"
+url: "https://github.com/super12v/hassio-addons"
+image: "ghcr.io/super12v/hassio-addons/redis-sentinel/{arch}"
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: system
+boot: auto
+host_network: true
+map:
+  - addon_config:rw
+stage: experimental
+options:
+  redis_primary_host: "192.168.1.10"
+  redis_primary_port: 6379
+  sentinel_port: 26379
+  quorum: 2
+  down_after_ms: 5000
+  failover_timeout: 30000
+  log_level: "INFO"
+schema:
+  redis_primary_host: str
+  redis_primary_port: port
+  sentinel_port: port
+  quorum: "int(1,5)"
+  down_after_ms: "int(1000,60000)"
+  failover_timeout: "int(5000,300000)"
+  log_level: "list(DEBUG|INFO|WARNING|ERROR)"

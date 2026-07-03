@@ -4,7 +4,6 @@
 
 ### Added
 
-- Redis Sentinel for automatic Redis failover voting
-- MariaDB keepalived arbiter (HTTP health endpoint)
+- Redis Sentinel tiebreaker for automatic failover voting
 - Configurable quorum, timeouts, and ports
 - Multi-arch support (aarch64, amd64)

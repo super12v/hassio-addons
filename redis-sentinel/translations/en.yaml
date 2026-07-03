@@ -1,0 +1,30 @@
+configuration:
+  redis_primary_host:
+    name: Redis Primary Host
+    description: >-
+      IP address of the Redis primary server.
+  redis_primary_port:
+    name: Redis Primary Port
+    description: >-
+      Port of the Redis primary server. Default: 6379.
+  sentinel_port:
+    name: Sentinel Port
+    description: >-
+      Port for this Sentinel instance to listen on. Default: 26379.
+  quorum:
+    name: Quorum
+    description: >-
+      Number of Sentinels that must agree the primary is down
+      before triggering failover. With 3 sentinels, use 2.
+  down_after_ms:
+    name: Down After (ms)
+    description: >-
+      Milliseconds of no response before a node is considered down.
+  failover_timeout:
+    name: Failover Timeout (ms)
+    description: >-
+      Maximum time for a failover to complete.
+  log_level:
+    name: Log Level
+    description: >-
+      Logging verbosity. DEBUG, INFO, WARNING, or ERROR.
