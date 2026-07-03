@@ -1,0 +1,6 @@
+authorized_keys:
+  - "ssh-rsa AAAAB3NzaC1yc2EAAA...your-key-here... root@proxmox-node1"
+  - "ssh-rsa AAAAB3NzaC1yc2EAAA...your-key-here... root@proxmox-node2"
+ssh_port: 2222
+qnetd_port: 5403
+log_level: INFO
