@@ -12,7 +12,7 @@ Runs an HTTP health endpoint on an independent host (e.g. Raspberry Pi). Both Ma
 ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
 │ mariadb-primary  │     │ mariadb-standby  │     │ HA RPi           │
 │ MariaDB + keepa  │     │ MariaDB + keepa  │     │ Arbiter (HTTP)   │
-│ (picard)         │     │ (riker)          │     │ (this add-on)    │
+│ (node 1)         │     │ (node 2)         │     │ (this add-on)    │
 └────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
          │                        │                         │
          └────── GET :8306/primary ─────────────────────────┘

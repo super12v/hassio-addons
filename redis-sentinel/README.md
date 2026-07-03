@@ -12,7 +12,7 @@ Runs a Redis Sentinel instance that monitors your Redis primary/replica pair and
 ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
 │ redis-primary    │     │ redis-standby    │     │ HA RPi           │
 │ Redis + Sentinel │◄───►│ Redis + Sentinel │◄───►│ Sentinel (voter) │
-│ (picard)         │     │ (riker)          │     │ (this add-on)    │
+│ (node 1)         │     │ (node 2)         │     │ (this add-on)    │
 └──────────────────┘     └──────────────────┘     └──────────────────┘
                     Sentinel quorum: 2/3
 ```
