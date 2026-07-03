@@ -8,8 +8,8 @@ Home Assistant add-ons for homelab infrastructure — cluster quorum, database H
 
 | Add-on | Description | Docs |
 |--------|-------------|------|
-| **[Patroni Raft Voter](patroni-raft/)** | Raft tiebreaker vote for Patroni PostgreSQL HA clusters | [DOCS](patroni-raft/DOCS.md) |
-| **[Proxmox QDevice](proxmox-qdevice/)** | Corosync QNetd quorum vote for 2-node Proxmox VE clusters | [DOCS](proxmox-qdevice/DOCS.md) |
+| **[Patroni Raft Voter](patroni-raft/)** | Raft tiebreaker vote for Patroni PostgreSQL HA clusters | [README](patroni-raft/README.md) |
+| **[Proxmox QDevice](proxmox-qdevice/)** | Corosync QNetd quorum vote for 2-node Proxmox VE clusters | [README](proxmox-qdevice/README.md) |
 | **[Redis Sentinel](redis-sentinel/)** | Sentinel tiebreaker vote for Redis HA failover | [README](redis-sentinel/README.md) |
 | **[MariaDB Arbiter](mariadb-arbiter/)** | Keepalived health arbitrator for MariaDB HA failover | [README](mariadb-arbiter/README.md) |
 
@@ -19,11 +19,11 @@ Add this repository to Home Assistant:
 
 1. Navigate to **Settings → Add-ons → Add-on Store → ⋮ → Repositories**
 2. Add: `https://github.com/super12v/hassio-addons`
-3. Both add-ons will appear under **super12v's Add-ons**
+3. All add-ons will appear under **super12v's Add-ons**
 
 ## Architecture Support
 
-Both add-ons support:
+All add-ons support:
 
 ![aarch64][aarch64-shield] ![amd64][amd64-shield]
 
