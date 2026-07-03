@@ -57,7 +57,7 @@ PubkeyAuthentication yes
 ChallengeResponseAuthentication no
 UsePAM no
 AuthorizedKeysFile /root/.ssh/authorized_keys
-Subsystem sftp /usr/lib/ssh/sftp-server
+Subsystem sftp /usr/lib/openssh/sftp-server
 PrintMotd no
 AcceptEnv LANG LC_*
 EOF
