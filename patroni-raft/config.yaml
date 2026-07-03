@@ -1,9 +1,9 @@
 name: "Patroni Raft Voter"
 description: "Lightweight Patroni Raft tiebreaker for PostgreSQL HA cluster quorum. Provides a third vote for Patroni's built-in Raft consensus."
-version: "1.2.1"
+version: "1.2.2"
 slug: "patroni_raft_voter"
 url: "https://github.com/super12v/hassio-addons"
-image: "ghcr.io/super12v/patroni-raft-voter/{arch}"
+image: "ghcr.io/super12v/hassio-addons/patroni-raft-voter/{arch}"
 arch:
   - aarch64
   - amd64
