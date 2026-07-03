@@ -1,6 +1,6 @@
 name: "Proxmox QDevice"
 description: "Corosync QNetd service providing a third quorum vote for 2-node Proxmox VE clusters. Enables automatic HA failover when a node goes down."
-version: "1.2.1"
+version: "1.2.2"
 slug: "proxmox_qdevice"
 url: "https://github.com/super12v/hassio-addons"
 image: "ghcr.io/super12v/hassio-addons/proxmox-qdevice/{arch}"

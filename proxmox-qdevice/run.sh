@@ -20,11 +20,11 @@ mkdir -p /root/.ssh
 chmod 700 /root/.ssh
 : > /root/.ssh/authorized_keys
 
-KEY_COUNT=0
-for key in $(bashio::config 'authorized_keys'); do
+KEY_COUNT=$(bashio::config 'authorized_keys | length')
+for (( i=0; i < KEY_COUNT; i++ )); do
+    key=$(bashio::config "authorized_keys[${i}]")
     if [ -n "${key}" ]; then
         echo "${key}" >> /root/.ssh/authorized_keys
-        KEY_COUNT=$((KEY_COUNT + 1))
     fi
 done
 chmod 600 /root/.ssh/authorized_keys
@@ -39,6 +39,7 @@ fi
 bashio::log.info "SSH key authentication: ${KEY_COUNT} key(s) loaded"
 
 # Generate SSH host keys if they don't exist (persist across restarts)
+mkdir -p /data/qnetd
 if [ ! -f /data/qnetd/ssh_host_rsa_key ]; then
     bashio::log.info "Generating SSH host keys (first run)..."
     ssh-keygen -t rsa -b 4096 -f /data/qnetd/ssh_host_rsa_key -N "" -q
