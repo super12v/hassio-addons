@@ -1,0 +1,31 @@
+configuration:
+  self_addr:
+    name: Self Address
+    description: This device's IP and Raft port (e.g., 192.168.1.100:5010)
+  partner_addrs:
+    name: Partner Addresses
+    description: List of other Patroni node addresses (IP:port)
+  scope:
+    name: Cluster Scope
+    description: Patroni cluster name (must match all nodes)
+  namespace:
+    name: Namespace
+    description: Patroni namespace (must match all nodes)
+  replication_username:
+    name: Replication Username
+    description: PostgreSQL replication user (must match primary)
+  replication_password:
+    name: Replication Password
+    description: PostgreSQL replication password (must match primary)
+  superuser_username:
+    name: Superuser Username
+    description: PostgreSQL superuser name (must match primary)
+  superuser_password:
+    name: Superuser Password
+    description: PostgreSQL superuser password (must match primary)
+  log_level:
+    name: Log Level
+    description: Logging verbosity
+  pg_version:
+    name: PostgreSQL Version
+    description: Must match the version running on your primary and standby nodes

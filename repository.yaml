@@ -1,0 +1,7 @@
+channels:
+  stable: true
+  beta: false
+  edge: false
+name: super12v's Add-ons
+url: https://github.com/super12v/hassio-addons
+maintainer: super12v

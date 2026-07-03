@@ -1,0 +1,22 @@
+configuration:
+  authorized_keys:
+    name: SSH Authorized Keys
+    description: >-
+      Public SSH keys from your Proxmox nodes. One key per entry.
+      Retrieve from each node with: cat /root/.ssh/id_rsa.pub
+      All nodes in the cluster need their key listed here.
+  ssh_port:
+    name: SSH Port
+    description: >-
+      Port for the SSH daemon used during the Proxmox qdevice
+      setup handshake. Default: 2222.
+  qnetd_port:
+    name: QNetd Port
+    description: >-
+      Port for the corosync-qnetd service. Proxmox nodes
+      connect to this port for quorum voting. Default: 5403.
+  log_level:
+    name: Log Level
+    description: >-
+      Logging verbosity for corosync-qnetd.
+      DEBUG, INFO, WARNING, or ERROR.
