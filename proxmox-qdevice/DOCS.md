@@ -78,17 +78,32 @@ authorized_keys:
 
 Start the add-on. Check the logs to confirm SSH and QNetd started successfully.
 
-### Step 3: Run the setup command
+### Step 3: Configure SSH on each Proxmox node
+
+`pvecm qdevice setup` uses SSH port 22 by default and does not support a custom port flag. Since this add-on listens on port 2222 (to avoid conflicting with the HA SSH add-on), you need to add an SSH client config entry on **each** Proxmox node:
+
+```bash
+# Run on EACH Proxmox node:
+cat >> /root/.ssh/config << 'EOF'
+
+Host <HA_IP>
+    Port 2222
+EOF
+```
+
+Replace `<HA_IP>` with your Home Assistant's IP address (e.g. `10.0.0.84`).
+
+### Step 4: Run the setup command
 
 On **one** Proxmox node (it doesn't matter which):
 
 ```bash
-pvecm qdevice setup <HA_IP> -f --port <ssh_port>
+pvecm qdevice setup <HA_IP> -f
 ```
 
 The `-f` flag forces setup even if a previous QDevice was configured. No password prompt — SSH key authentication handles the handshake automatically.
 
-### Step 4: Verify
+### Step 5: Verify
 
 ```bash
 # On any Proxmox node:

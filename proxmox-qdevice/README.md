@@ -67,19 +67,32 @@ log_level: INFO
 
 Every node in the cluster needs its key listed. Start the add-on.
 
-### Step 3: Run the setup command
+### Step 3: Configure SSH port on each Proxmox node
+
+`pvecm` always uses SSH port 22 and has no custom port flag. Add an SSH config entry on **each** Proxmox node to redirect connections to the add-on's port:
+
+```bash
+# Run on EACH Proxmox node:
+cat >> /root/.ssh/config << 'EOF'
+
+Host <HA_IP>
+    Port 2222
+EOF
+```
+
+Replace `<HA_IP>` with your Home Assistant's IP (e.g. `10.0.0.84`).
+
+### Step 4: Run the setup command
 
 On **one** Proxmox node (either one):
 
 ```bash
-pvecm qdevice setup <HA_IP> -f --port <ssh_port>
+pvecm qdevice setup <HA_IP> -f
 ```
-
-Where `<HA_IP>` is your Home Assistant's IP address and `<ssh_port>` is the configured SSH port (default 2222).
 
 No password prompt — key auth handles it.
 
-### Step 4: Verify
+### Step 5: Verify
 
 ```bash
 # Check qdevice status
@@ -94,16 +107,16 @@ You should see 3 votes: one per Proxmox node plus one from the QDevice.
 ## How It Works
 
 ```
-┌─────────────────┐         ┌─────────────────┐
-│  Proxmox Node 1 │◄──────►│  Proxmox Node 2 │
-│   (1 vote)      │  ring   │   (1 vote)      │
-└────────┬────────┘         └────────┬────────┘
-         │                           │
-         │    ┌───────────────┐      │
+┌─────────────────┐          ┌─────────────────┐
+│  Proxmox Node 1 │◄────────►│  Proxmox Node 2 │
+│   (1 vote)      │   ring   │   (1 vote)      │
+└────────┬────────┘          └────────┬────────┘
+         │                            │
+         │    ┌────────────────┐      │
          └───►│ Home Assistant │◄─────┘
-              │   QDevice     │
-              │   (1 vote)    │
-              └───────────────┘
+              │    QDevice     │
+              │    (1 vote)    │
+              └────────────────┘
               Quorum: 2/3 votes
 ```
 
