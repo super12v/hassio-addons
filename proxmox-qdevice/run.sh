@@ -7,13 +7,13 @@ SSH_PORT=$(bashio::config 'ssh_port')
 QNETD_PORT=$(bashio::config 'qnetd_port')
 LOG_LEVEL=$(bashio::config 'log_level')
 
-bashio::log.info "================================================"
-bashio::log.info " Proxmox QDevice (corosync-qnetd)"
-bashio::log.info "================================================"
-bashio::log.info "SSH port:   ${SSH_PORT}"
-bashio::log.info "QNetd port: ${QNETD_PORT}"
-bashio::log.info "Log level:  ${LOG_LEVEL}"
-bashio::log.info "================================================"
+bashio::log.blue "================================================"
+bashio::log.blue " Proxmox QDevice (corosync-qnetd)"
+bashio::log.blue "================================================"
+bashio::log.cyan "SSH port:   ${SSH_PORT}"
+bashio::log.cyan "QNetd port: ${QNETD_PORT}"
+bashio::log.cyan "Log level:  ${LOG_LEVEL}"
+bashio::log.blue "================================================"
 
 # --- SSH Key Authentication Setup ---
 mkdir -p /root/.ssh
@@ -81,9 +81,10 @@ case "${LOG_LEVEL}" in
 esac
 
 # Start SSHD in the background
-bashio::log.info "Starting SSH daemon on port ${SSH_PORT}..."
+bashio::log.green "Starting SSH daemon on port ${SSH_PORT}..."
 /usr/sbin/sshd -e
 
 # Start corosync-qnetd in the foreground
 bashio::log.info "Starting corosync-qnetd on port ${QNETD_PORT}..."
 exec corosync-qnetd -f -p "${QNETD_PORT}" -d "${QNETD_LOG_LEVEL}"
+

@@ -13,14 +13,14 @@ SU_USER=$(bashio::config 'superuser_username')
 SU_PASS=$(bashio::config 'superuser_password')
 PG_VERSION=$(bashio::config 'pg_version')
 
-bashio::log.info "================================================"
-bashio::log.info " Patroni Raft Voter (tiebreaker)"
-bashio::log.info "================================================"
-bashio::log.info "Self address: ${SELF_ADDR}"
-bashio::log.info "Scope: ${SCOPE}"
-bashio::log.info "Namespace: ${NAMESPACE}"
-bashio::log.info "Log level: ${LOG_LEVEL}"
-bashio::log.info "================================================"
+bashio::log.blue "================================================"
+bashio::log.blue " Patroni Raft Voter (tiebreaker)"
+bashio::log.blue "================================================"
+bashio::log.cyan "Self address: ${SELF_ADDR}"
+bashio::log.cyan "Scope:        ${SCOPE}"
+bashio::log.cyan "Namespace:    ${NAMESPACE}"
+bashio::log.cyan "Log level:    ${LOG_LEVEL}"
+bashio::log.blue "================================================"
 
 # Extract IP from self_addr (format: ip:port)
 SELF_IP="${SELF_ADDR%:*}"
