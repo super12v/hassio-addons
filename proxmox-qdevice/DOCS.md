@@ -118,8 +118,35 @@ Expected output shows the QDevice connected and providing 1 vote.
 ### "Cannot connect to qnetd host"
 
 - Verify the add-on is running (check HA logs)
-- Confirm network connectivity: `nc -zv <HA_IP> <ssh_port>`
-- Check firewall rules allow the SSH port from Proxmox nodes
+- Confirm network connectivity: `nc -zv <HA_IP> 2222` (SSH) and `nc -zv <HA_IP> 5403` (QNetd)
+- Check firewall rules allow both ports from Proxmox nodes
+
+### "Connection refused" on SSH
+
+- Ensure no other add-on is using port 2222 (e.g. old QDevice add-on)
+- If QNetd fails to start (port 5403 in use), sshd also won't be reachable — check add-on logs for "address in use" errors
+- Stop any conflicting add-ons, then restart this one
+
+### "scp: Connection closed" during setup
+
+- This means SSH connects but the SFTP subsystem fails
+- Usually a path issue in sshd_config — update the add-on to the latest version
+- Workaround: `ssh root@<HA_IP> 'ln -sf /usr/lib/openssh/sftp-server /usr/lib/ssh/sftp-server'`
+
+### "NSS error: Local Network address is in use"
+
+- Port 5403 is already bound by another process (usually an old QDevice add-on)
+- Stop the conflicting add-on/service, then restart this one
+
+### SSH config not taking effect / wrong port
+
+- `pvecm` does not support a `--port` flag — it always uses the SSH client config
+- Ensure `/root/.ssh/config` on each Proxmox node has the correct entry:
+  ```
+  Host <HA_IP>
+      Port 2222
+  ```
+- If you previously used a different QDevice add-on, check for duplicate/conflicting `Host` entries — SSH uses the **first match**
 
 ### "Certificate error during setup"
 
@@ -140,6 +167,9 @@ corosync-quorumtool -s
 
 # QDevice connection state
 corosync-qdevice-tool -s
+
+# Full cluster status with QDevice votes
+pvecm status
 ```
 
 ## Data Persistence
