@@ -5,6 +5,7 @@ on:
     tags:
       - 'patroni-raft/v*'
       - 'proxmox-qdevice/v*'
+      - 'db-quorum/v*'
 
 jobs:
   detect:
@@ -80,5 +81,8 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/hassio-addons/${{ needs.detect.outputs.image_name }}/${{ matrix.arch }}:${{ needs.detect.outputs.version }}
             ghcr.io/${{ github.repository_owner }}/hassio-addons/${{ needs.detect.outputs.image_name }}/${{ matrix.arch }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+.arch }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

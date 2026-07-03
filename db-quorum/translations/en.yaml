@@ -1,0 +1,49 @@
+configuration:
+  redis_primary_host:
+    name: Redis Primary Host
+    description: >-
+      IP address of the Redis primary server.
+  redis_primary_port:
+    name: Redis Primary Port
+    description: >-
+      Port of the Redis primary server. Default: 6379.
+  redis_sentinel_port:
+    name: Redis Sentinel Port
+    description: >-
+      Port for this Sentinel instance to listen on. Default: 26379.
+  redis_quorum:
+    name: Redis Quorum
+    description: >-
+      Number of Sentinels that must agree the primary is down
+      before triggering failover. With 3 sentinels, use 2.
+  redis_down_after_ms:
+    name: Down After (ms)
+    description: >-
+      Milliseconds of no response before a node is considered down.
+      Default: 5000.
+  redis_failover_timeout:
+    name: Failover Timeout (ms)
+    description: >-
+      Maximum time for a failover to complete. Default: 30000.
+  mariadb_primary_host:
+    name: MariaDB Primary Host
+    description: >-
+      IP address of the MariaDB primary server.
+  mariadb_standby_host:
+    name: MariaDB Standby Host
+    description: >-
+      IP address of the MariaDB standby (replica) server.
+  mariadb_port:
+    name: MariaDB Port
+    description: >-
+      Port for MariaDB on both nodes. Default: 3306.
+  mariadb_health_port:
+    name: MariaDB Health Port
+    description: >-
+      Port for the MariaDB arbiter HTTP endpoint. Keepalived
+      on both MariaDB CTs queries this to determine the true primary.
+      Default: 8306.
+  log_level:
+    name: Log Level
+    description: >-
+      Logging verbosity. DEBUG, INFO, WARNING, or ERROR.

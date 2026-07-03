@@ -10,6 +10,7 @@ Home Assistant add-ons for homelab infrastructure — cluster quorum, database H
 |--------|-------------|------|
 | **[Patroni Raft Voter](patroni-raft/)** | Raft tiebreaker vote for Patroni PostgreSQL HA clusters | [DOCS](patroni-raft/DOCS.md) |
 | **[Proxmox QDevice](proxmox-qdevice/)** | Corosync QNetd quorum vote for 2-node Proxmox VE clusters | [DOCS](proxmox-qdevice/DOCS.md) |
+| **[Database Quorum](db-quorum/)** | Redis Sentinel + MariaDB arbiter for database HA failover | [README](db-quorum/README.md) |
 
 ## Install
 
