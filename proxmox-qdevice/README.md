@@ -80,7 +80,7 @@ Host <HA_IP>
 EOF
 ```
 
-Replace `<HA_IP>` with your Home Assistant's IP (e.g. `10.0.0.84`).
+Replace `<HA_IP>` with your Home Assistant's IP (e.g. `192.168.1.100`).
 
 ### Step 4: Run the setup command
 

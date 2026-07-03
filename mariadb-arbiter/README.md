@@ -16,7 +16,7 @@ Runs an HTTP health endpoint on an independent host (e.g. Raspberry Pi). Both Ma
 └────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
          │                        │                         │
          └────── GET :8306/primary ─────────────────────────┘
-                      VIP: 10.0.1.53
+                      VIP: 192.168.1.53
 ```
 
 Keepalived check script on each MariaDB CT:
