@@ -1,0 +1,24 @@
+name: "Galera Arbitrator (garbd)"
+description: "Galera Cluster arbitrator daemon. Participates in quorum voting without storing data. Provides the 3rd vote for a 2-node Galera cluster."
+version: "1.0.0"
+slug: "galera_garbd"
+url: "https://github.com/super12v/hassio-addons"
+image: "ghcr.io/super12v/hassio-addons/galera-garbd/{arch}"
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: system
+boot: auto
+host_network: true
+map:
+  - addon_config:rw
+stage: experimental
+options:
+  cluster_name: "my-galera-cluster"
+  cluster_address: "gcomm://192.168.1.10,192.168.1.11"
+  log_level: "INFO"
+schema:
+  cluster_name: str
+  cluster_address: str
+  log_level: "list(DEBUG|INFO|WARNING|ERROR)"

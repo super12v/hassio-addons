@@ -1,0 +1,10 @@
+configuration:
+  cluster_name:
+    name: Cluster Name
+    description: "Name of the Galera cluster to join (must match wsrep_cluster_name on the MariaDB nodes)"
+  cluster_address:
+    name: Cluster Address
+    description: "Galera group communication address. Format: gcomm://node1_ip,node2_ip"
+  log_level:
+    name: Log Level
+    description: "Logging verbosity"
