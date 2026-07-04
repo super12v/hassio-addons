@@ -57,7 +57,7 @@ fi
 
 # Detect config change — if partner_addrs or scope changed, Raft state is stale
 # and must be wiped. Otherwise the node tries to rejoin a non-existent cluster.
-CONFIG_HASH=$(echo "${SCOPE}:${SELF_ADDR}:$(bashio::config 'partner_addrs')" | md5sum | cut -d' ' -f1)
+CONFIG_HASH=$(echo "${SCOPE}:${SELF_ADDR}:$(bashio::config 'partner_addrs'):${RAFT_PASS}" | md5sum | cut -d' ' -f1)
 SAVED_HASH=""
 if [ -f /data/raft/.config_hash ]; then
     SAVED_HASH=$(cat /data/raft/.config_hash)
