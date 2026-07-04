@@ -1,6 +1,6 @@
 name: "Patroni Raft Voter"
 description: "Lightweight Patroni Raft tiebreaker for PostgreSQL HA cluster quorum. Provides a third vote for Patroni's built-in Raft consensus."
-version: "1.2.2"
+version: "1.3.0"
 slug: "patroni_raft_voter"
 url: "https://github.com/super12v/hassio-addons"
 image: "ghcr.io/super12v/hassio-addons/patroni-raft-voter/{arch}"
@@ -27,6 +27,9 @@ options:
   superuser_password: ""
   log_level: "INFO"
   pg_version: "15"
+  restapi_username: ""
+  restapi_password: ""
+  raft_password: ""
 schema:
   self_addr: str
   partner_addrs:
@@ -39,3 +42,6 @@ schema:
   superuser_password: password
   log_level: "list(DEBUG|INFO|WARNING|ERROR)"
   pg_version: "list(14|15|16|17)"
+  restapi_username: "str?"
+  restapi_password: "password?"
+  raft_password: "password?"

@@ -12,6 +12,9 @@ REPL_PASS=$(bashio::config 'replication_password')
 SU_USER=$(bashio::config 'superuser_username')
 SU_PASS=$(bashio::config 'superuser_password')
 PG_VERSION=$(bashio::config 'pg_version')
+RESTAPI_USER=$(bashio::config 'restapi_username')
+RESTAPI_PASS=$(bashio::config 'restapi_password')
+RAFT_PASS=$(bashio::config 'raft_password')
 
 bashio::log.blue "================================================"
 bashio::log.blue " Patroni Raft Voter (tiebreaker)"
@@ -72,6 +75,23 @@ ${PARTNER_YAML}
 restapi:
   listen: "0.0.0.0:8008"
   connect_address: "${SELF_IP}:8008"
+EOF
+
+# Add REST API auth if configured
+if [ -n "${RESTAPI_USER}" ] && [ -n "${RESTAPI_PASS}" ]; then
+    cat >> /etc/patroni.yml << EOF
+  authentication:
+    username: ${RESTAPI_USER}
+    password: ${RESTAPI_PASS}
+EOF
+fi
+
+# Add Raft password if configured
+if [ -n "${RAFT_PASS}" ]; then
+    sed -i "/^raft:/a\\  password: ${RAFT_PASS}" /etc/patroni.yml
+fi
+
+cat >> /etc/patroni.yml << EOF
 
 bootstrap:
   dcs:
