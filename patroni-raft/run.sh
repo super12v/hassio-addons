@@ -55,6 +55,25 @@ if [ ! -d "$PG_BIN" ]; then
     PG_BIN="/usr/bin"
 fi
 
+# Detect config change — if partner_addrs or scope changed, Raft state is stale
+# and must be wiped. Otherwise the node tries to rejoin a non-existent cluster.
+CONFIG_HASH=$(echo "${SCOPE}:${SELF_ADDR}:$(bashio::config 'partner_addrs')" | md5sum | cut -d' ' -f1)
+SAVED_HASH=""
+if [ -f /data/raft/.config_hash ]; then
+    SAVED_HASH=$(cat /data/raft/.config_hash)
+fi
+
+if [ "${CONFIG_HASH}" != "${SAVED_HASH}" ]; then
+    bashio::log.warning "Configuration changed (partner_addrs, scope, or self_addr). Wiping stale Raft state."
+    rm -rf /data/raft/*
+    rm -rf /data/pgdata/*
+    mkdir -p /data/raft
+    echo "${CONFIG_HASH}" > /data/raft/.config_hash
+    bashio::log.info "Raft state cleared. Node will rejoin cluster fresh."
+else
+    bashio::log.info "Configuration unchanged. Preserving existing Raft state."
+fi
+
 # Generate patroni.yml
 # This node runs a real PostgreSQL instance but with nofailover=true,
 # nosync=true, noloadbalance=true — it only participates in Raft votes.
