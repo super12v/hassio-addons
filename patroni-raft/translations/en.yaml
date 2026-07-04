@@ -1,31 +1,40 @@
 configuration:
   self_addr:
     name: Self Address
-    description: This device's IP and Raft port (e.g., 192.168.1.100:5010)
+    description: "This RPi's IP and Raft port (format: ip:port)"
   partner_addrs:
     name: Partner Addresses
-    description: List of other Patroni node addresses (IP:port)
+    description: "IP:port of the other Patroni nodes (both data nodes)"
   scope:
     name: Cluster Scope
-    description: Patroni cluster name (must match all nodes)
+    description: "Patroni cluster name — must match all nodes exactly"
   namespace:
     name: Namespace
-    description: Patroni namespace (must match all nodes)
+    description: "Patroni DCS namespace — must match all nodes exactly"
   replication_username:
     name: Replication Username
-    description: PostgreSQL replication user (must match primary)
+    description: "PostgreSQL replication user (must match data nodes)"
   replication_password:
     name: Replication Password
-    description: PostgreSQL replication password (must match primary)
+    description: "PostgreSQL replication password (must match data nodes)"
   superuser_username:
     name: Superuser Username
-    description: PostgreSQL superuser name (must match primary)
+    description: "PostgreSQL superuser (must match data nodes)"
   superuser_password:
     name: Superuser Password
-    description: PostgreSQL superuser password (must match primary)
+    description: "PostgreSQL superuser password (must match data nodes)"
   log_level:
     name: Log Level
-    description: Logging verbosity
+    description: "Logging verbosity"
   pg_version:
     name: PostgreSQL Version
-    description: Must match the version running on your primary and standby nodes
+    description: "PostgreSQL major version installed in this add-on"
+  restapi_username:
+    name: "REST API Username (hardening)"
+    description: "Optional. Protects unsafe REST API endpoints (POST/PUT/PATCH/DELETE). Must match the restapi.authentication.username on all Patroni nodes. Leave empty to disable."
+  restapi_password:
+    name: "REST API Password (hardening)"
+    description: "Optional. Must match the restapi.authentication.password on all Patroni nodes. Leave empty to disable."
+  raft_password:
+    name: "Raft Password (hardening)"
+    description: "Optional. Encrypts all Raft inter-node traffic. Must be identical on ALL 3 nodes (both data nodes + this RPi). Requires the 'cryptography' Python package. Leave empty to disable."
