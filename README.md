@@ -33,6 +33,7 @@ Primary target: Raspberry Pi 4 running Home Assistant OS.
 
 | Component | Version |
 |-----------|---------|
+| Hardware | Raspberry Pi 4 Model B (4GB) |
 | Home Assistant OS | 14.x (Supervisor 2025.x) |
 | Base image | `ghcr.io/home-assistant/*-base-debian:bookworm` |
 | Proxmox VE | 8.4 / 9.1 |
