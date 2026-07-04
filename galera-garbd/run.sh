@@ -33,4 +33,4 @@ exec garbd \
     --group "${CLUSTER_NAME}" \
     --address "${CLUSTER_ADDRESS}" \
     --log "/dev/stdout" \
-    --cfg "base_port=4567; evs.keepalive_period=PT1S; evs.suspect_timeout=PT10S; evs.inactive_timeout=PT30S"
+    --option "base_port=4567; evs.keepalive_period=PT1S; evs.suspect_timeout=PT10S; evs.inactive_timeout=PT30S"
