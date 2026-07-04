@@ -5,8 +5,7 @@ on:
     tags:
       - 'patroni-raft/v*'
       - 'proxmox-qdevice/v*'
-      - 'redis-sentinel/v*'
-      - 'mariadb-arbiter/v*'
+      - 'galera-garbd/v*'
 
 jobs:
   detect:
@@ -28,10 +27,8 @@ jobs:
             echo "image_name=patroni-raft-voter" >> $GITHUB_OUTPUT
           elif [ "${ADDON}" = "proxmox-qdevice" ]; then
             echo "image_name=proxmox-qdevice" >> $GITHUB_OUTPUT
-          elif [ "${ADDON}" = "redis-sentinel" ]; then
-            echo "image_name=redis-sentinel" >> $GITHUB_OUTPUT
-          elif [ "${ADDON}" = "mariadb-arbiter" ]; then
-            echo "image_name=mariadb-arbiter" >> $GITHUB_OUTPUT
+          elif [ "${ADDON}" = "galera-garbd" ]; then
+            echo "image_name=galera-garbd" >> $GITHUB_OUTPUT
           fi
 
   build:
