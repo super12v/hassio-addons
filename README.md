@@ -29,6 +29,21 @@ All add-ons support:
 
 Primary target: Raspberry Pi 4 running Home Assistant OS.
 
+## Tested With
+
+| Component | Version |
+|-----------|---------|
+| Home Assistant OS | 14.x (Supervisor 2025.x) |
+| Base image | `ghcr.io/home-assistant/*-base-debian:bookworm` |
+| Proxmox VE | 8.4 / 9.1 |
+| Patroni | 4.1.3 |
+| PostgreSQL | 15.x |
+| MariaDB | 10.11.14 |
+| Galera | 4.23 |
+| Redis | 7.0.15 |
+
+Versions reflect the current testing environment. Other versions may work but are not validated.
+
 ## License
 
 MIT
