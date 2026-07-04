@@ -1,0 +1,25 @@
+configuration:
+  master_name:
+    name: Master Name
+    description: "Sentinel monitor group name (must match on all sentinels)"
+  master_host:
+    name: Master Host
+    description: "IP address of the current Redis master"
+  master_port:
+    name: Master Port
+    description: "Redis port on the master"
+  master_password:
+    name: Master Password
+    description: "Redis AUTH password (requirepass on the master). Leave empty if no auth."
+  quorum:
+    name: Quorum
+    description: "Number of sentinels that must agree the master is down before failover (typically 2)"
+  down_after_ms:
+    name: Down After (ms)
+    description: "Milliseconds of no response before marking master as subjectively down"
+  failover_timeout:
+    name: Failover Timeout (ms)
+    description: "Maximum time for a failover operation"
+  log_level:
+    name: Log Level
+    description: "Logging verbosity"
